@@ -1,0 +1,9 @@
+admin login link: ../public/login
+admin mail: fish@gmail.com
+admin pass: 12345678
+admin can do all CRUD operations 
+
+db required (added in the github):new_shop.sql 
+
+Click on new products to see product detail
+add cart available, cart details with price also available
