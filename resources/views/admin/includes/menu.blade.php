@@ -50,6 +50,17 @@
             </ul>
         </li>
         <!--end of product menu-->
+
+        <li>
+            <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> Order Information<span class="fa arrow"></a>
+            <ul class="nav nav-second-level">
+                <li>
+                    <a href="{{ url('/order/manage-order') }}">Manage Order</a>
+                </li>
+            </ul>
+        </li>
+        <!--manage order ends-->
+
         <li>
             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">

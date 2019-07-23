@@ -77,9 +77,9 @@
               @elseif(Session::get('customerId'))
                 <a href="{{ route('checkout-shipping') }}" class="btn btn-warning pull-right">Checkout</a>
               @else
-                <a href="{{ route('checkout') }}" class="btn btn-warning pull-right">Checkout</a>
+                <a href="{{ route('checkout') }}" class="btn btn-warning pull-right">Login/Signin Next</a>
               @endif
-                <a href="" class="btn btn-success ">Shop More</a>
+                <a href="{{ route('/') }}" class="btn btn-success ">Shop More</a>
             </div>
           </div>
 

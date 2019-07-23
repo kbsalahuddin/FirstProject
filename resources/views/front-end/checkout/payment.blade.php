@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                   <th></th>
-                  <td><input type="submit" name="btn" value="Confirm Payment"/></td>
+                  <td><input type="submit" name="btn" value="Confirm Payment & back to Home"/></td>
                 </tr>
               </table>
 

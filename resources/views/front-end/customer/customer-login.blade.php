@@ -11,10 +11,10 @@
   <div class="single-wl3">
       <div class="container">
       <div class="row">
-        <h4 class="text-center text-success well">Please Signup or Login in to your account first to complete purchase</h4><br />
+        <h4 class="text-center text-success well"></h4><br />
         <div class="col-md-6 well">
 
-          <h3>Register</h3><br />
+          <h3>Register Here!</h3><br />
             {{Form::open(['route'=>'customer-sign-up','method'=>'post'])}}
               <div class="key">
                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -52,9 +52,8 @@
             {{Form::close()}}
         </div>
         <div class="col-md-5 well" style="margin-left:20px">
-          <h3 class="text-danger">{{Session::get('message')}}</h3><br />
           <h3>Login Here!</h3><br />
-
+          <h3 class="text-center">{{Session::get('message')}}</h3><br />
           {{Form::open(['route'=>'customer-login','method'=>'post'])}}
           <div class="form-group">
 
