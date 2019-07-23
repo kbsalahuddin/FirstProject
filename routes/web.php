@@ -14,6 +14,13 @@
     'uses'=>'NewShopController@productDetails',
     'as' => 'product-details'
   ]);
+
+  //front-end
+    Route::get('/contact-us', [
+      'uses'=>'NewShopController@contactUs',
+      'as' => 'contact-us'
+    ]);
+
 //cart
   Route::post('/cart/add', [
     'uses'=>'NewShopCartController@addToCart',
@@ -47,6 +54,27 @@ Route::post('/customer/registration', [
 ]);
 
 //cart
+Route::post('/checkout/customer-login', [
+  'uses'=>'CheckoutController@customerLoginCheck',
+  'as' => 'customer-login'
+]);
+
+//cart--logout
+Route::post('/checkout/customer-logout', [
+  'uses'=>'CheckoutController@customerLogout',
+  'as' => 'customer-logout'
+]);
+
+//cart--new user/customer-login
+Route::get('/checkout/new-customer-login', [
+  'uses'=>'CheckoutController@newCustomerLoginCheck',
+  'as' => 'new-customer-login'
+]);
+
+
+
+
+//cart
 Route::get('/checkout/shipping', [
   'uses'=>'CheckoutController@shippingForm',
   'as' => 'customer-shipping'
@@ -77,38 +105,46 @@ Route::get('/complete/order', [
 ]);
 
 
-//front-end
-  Route::get('/contact-us', [
-    'uses'=>'NewShopController@contactUs',
-    'as' => 'contact-us'
-  ]);
+
 //for admin login and all related from laravel package download
   Auth::routes();
 
-  Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
- //Admin category addition
-  Route::get('/category/create-category', 'CategoryController@createCategory');
-  Route::post('/category/save-category', 'CategoryController@storeCategory');
-  Route::get('/category/manage-category', 'CategoryController@manageCategory');
-  Route::get('/category/edit-category/{id}', 'CategoryController@editCategory');
-  Route::post('/category/update-category', 'CategoryController@updateCategory');
-  Route::get('/category/delete-category/{id}', 'CategoryController@deleteCategory');
+//Middleware group
+  Route::group(['middleware'=>'newShop'], function(){
+      Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 
-  //admin manufacturer
-  Route::get('/manufacturer/create-manu', 'ManufacturerController@createManu');
-  Route::post('/manufacturer/save-manu', 'ManufacturerController@storeManu');
-  Route::get('/manufacturer/manage-manu', 'ManufacturerController@manageManu');
-  Route::get('/manufacturer/edit-manu/{id}', 'ManufacturerController@editManu');
-  Route::post('/manufacturer/update-manu', 'ManufacturerController@updateManu');
-  Route::get('/manufacturer/delete-manu/{id}', 'ManufacturerController@deleteManu');
+      //Admin category addition
+       Route::get('/category/create-category','CategoryController@createCategory');
+       Route::post('/category/save-category','CategoryController@storeCategory');
+       Route::get('/category/manage-category','CategoryController@manageCategory');
+       Route::get('/category/edit-category/{id}','CategoryController@editCategory');
+       Route::post('/category/update-category','CategoryController@updateCategory');
+       Route::get('/category/delete-category/{id}','CategoryController@deleteCategory');
 
-  //admin product
-  Route::get('/product/create-product', 'ProductController@createProduct');
-  Route::post('/product/save-product', 'ProductController@storeProduct');
-  Route::get('/product/manage-product', 'ProductController@manageProduct');
-  Route::get('/product/view-product/{id}', 'ProductController@viewProduct');
-  Route::get('/product/edit-product/{id}', 'ProductController@editProduct');
-  Route::post('/product/update-product', 'ProductController@updateProduct');
-  Route::get('/product/delete-product/{id}', 'ProductController@deleteProduct');
+       //admin manufacturer
+       Route::get('/manufacturer/create-manu','ManufacturerController@createManu');
+       Route::post('/manufacturer/save-manu','ManufacturerController@storeManu');
+       Route::get('/manufacturer/manage-manu','ManufacturerController@manageManu');
+       Route::get('/manufacturer/edit-manu/{id}','ManufacturerController@editManu');
+       Route::post('/manufacturer/update-manu','ManufacturerController@updateManu');
+       Route::get('/manufacturer/delete-manu/{id}','ManufacturerController@deleteManu');
+
+
+       //admin product
+       Route::get('/product/create-product','ProductController@createProduct');
+       Route::post('/product/save-product','ProductController@storeProduct');
+       Route::get('/product/manage-product','ProductController@manageProduct');
+       Route::get('/product/view-product/{id}','ProductController@viewProduct');
+       Route::get('/product/edit-product/{id}','ProductController@editProduct');
+       Route::post('/product/update-product','ProductController@updateProduct');
+       Route::get('/product/delete-product/{id}','ProductController@deleteProduct');
+
+
+       //order control
+       Route::get('/order/manage-order', 'OrderController@manageOrder');
+       Route::get('/order/view-order-detail/{id}', 'OrderController@viewOrderDetail');
+       Route::get('/order/order-invoice/{id}', 'OrderController@viewOrderInvoice');
+       Route::get('/order/order-invoice-dwnld/{id}','OrderController@downloadOrderInvoice');
+});
